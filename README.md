@@ -5,7 +5,7 @@ V1.1<br />
 <br />
 V1.0 <br />
 This is my attempt at making a browser based snake game as a way to pratice using HTML, CSS and Javascript.
-The current features are:
+The current features are:<br />
 - Score tracker
 - Random starting position for snake
 - Random spawning of food (in spaces not occupied by snake)
