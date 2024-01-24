@@ -1,8 +1,8 @@
-Snake game \n
-V1.1
+Snake game <br />
+V1.1<br />
 - Added a stopwatch on the right 
 - Added a leaderboard that takes note of your fastest and most recent time to get 500 points
-V1.0 \n
+V1.0 <br />
 This is my attempt at making a browser based snake game as a way to pratice using HTML, CSS and Javascript.
 The current features are:
 - Score tracker
