@@ -8,10 +8,25 @@
         <script src="snake.js"></script>
     </head>
     <body>
-        <canvas id="board"></canvas>
-        <div class="paras">
+        <div id="canvasboard">
+            <canvas id="board"></canvas>
+        </div>
+        <div id="paras">
             <p1>score: </p1>
             <p2 id="score"></p2>
+            <table id="table" border="3px">
+                <tr>
+                    <td>Fastest Time</td>
+                    <td id="finalTime0">00:00</td>
+                </tr>
+                <tr>
+                    <td>Most Recent Time</td>
+                    <td id="finalTime1">00:00</td>
+                </tr>
+            </table>
+        </div>
+        <div id="stopwatch">
+            <p><span id="minutes">00</span> : <span id="seconds">00</span></p>
         </div>
     </body>
 </html>

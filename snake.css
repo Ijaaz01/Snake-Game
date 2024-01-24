@@ -1,9 +1,24 @@
-body > canvas {
-float:right;
+#board {
+position:absolute;
+top:10px;
+left: 320px;
+cursor:none;
 }
 
-body > div{
+#paras {
+    position: absolute;
+    top: 100px;
     font-size:50px;
-    text-align: center;
+}
+
+#stopwatch {
+    position:absolute;
+    top: 100px;
+    left: 1000px;
+    font-size: 50px;
+}
+
+#table {
+    font-size: 30px;
 }
 

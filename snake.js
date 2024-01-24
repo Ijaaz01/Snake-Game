@@ -23,6 +23,24 @@ var velY = 0;
 var snakeBody = [];
 var dead = 0;
 
+//stopwatch
+var moved = 0
+var count = 0;
+var min = 0;
+var sec = 0;
+var minStr;
+var secStr;
+
+//leaderboard
+var finalTime = 0;
+var internalMin = 0;
+var internalSec = 0;
+var fastestMin = 61
+var fastestSec = 61;
+var internalScore = 0;
+var targetScore = 500;
+
+
 window.onload = function() {
     board = document.getElementById("board");
     board.height = rows*unitSize;
@@ -38,6 +56,9 @@ function update() {
     if (dead) {
         gameOverScreen();
         return;
+    }
+    if (internalScore == targetScore) {
+        updateLeaderboard();
     }
     document.getElementById("score").innerHTML = score;
     context.fillStyle = "black";
@@ -65,14 +86,61 @@ function update() {
     if (snakeX == foodX && snakeY==foodY) {
         snakeBody.push([foodX, foodY]);
         score+=100;
+        internalScore+=100;
         spawnFood();
     }
     for (let i = 0; i <snakeBody.length; i++) {
         context.fillRect(snakeBody[i][0],snakeBody[i][1], unitSize, unitSize);
     }
+    if (moved){
+        stopwatch();
+    }
+}
+
+function updateLeaderboard() {
+    if (internalMin <= fastestMin && internalSec <= fastestSec) {
+        fastestMin = internalMin;
+        fastestSec = internalSec;
+        internalSec < 10 ? secStr = '0' + internalSec : secStr = internalSec;
+        internalMin < 10 ? minStr = '0' + internalMin : minStr = internalMin;
+        finalTime = minStr + ":" + secStr;
+        document.getElementById("finalTime0").innerHTML = finalTime;
+        document.getElementById("finalTime1").innerHTML = finalTime;
+    }
+    else {
+        internalSec < 10 ? secStr = '0' + internalSec : secStr = internalSec;
+        internalMin < 10 ? minStr = '0' + internalMin : minStr = internalMin;
+        finalTime = minStr + ":" + secStr;
+        document.getElementById("finalTime1").innerHTML = finalTime;
+    }
+    internalScore = 0;
+    internalMin = 0;
+    internalSec = 0;
+}
+
+function stopwatch() {
+    count++;
+    if (count == 10) {
+        internalSec++;
+        sec++;
+        count = 0;
+    }
+    if (sec == 60) {
+        min++;
+        sec = 0;
+    }
+    if (internalSec == 60) {
+        internalMin++;
+        internalSec = 0;
+    }
+    sec < 10 ? secStr = '0' + sec : secStr = sec;
+    min < 10 ?  minStr = '0' + min : minStr = min;
+    document.getElementById("seconds").innerHTML = secStr;
+    document.getElementById("minutes").innerHTML = minStr;
 }
 
 function move(event) {
+    moved = 1;
     if (event.code == "ArrowLeft" && velX != 1) {
         velX = -1;
         velY = 0;
@@ -89,9 +157,9 @@ function move(event) {
         velX = 0;
         velY = 1;
     }
-    else if (event.key == "q") {
+    /*else if (event.key == "q") {
         dead = 1;
-    }
+    }*/
 }
 
 function endlessBoard() {
